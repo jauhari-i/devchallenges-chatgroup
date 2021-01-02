@@ -4,12 +4,10 @@ dotenv.config()
 
 const config = {
   port: process.env.PORT,
-  basicAuthApi: [
-    {
-      username: process.env.BASIC_AUTH_USERNAME,
-      password: process.env.BASIC_AUTH_PASSWORD,
-    },
-  ],
+  basicAuthApi: {
+    username: process.env.BASIC_AUTH_USERNAME,
+    password: process.env.BASIC_AUTH_PASSWORD,
+  },
   publicKey: process.env.PUBLIC_KEY_PATH,
   privateKey: process.env.PRIVATE_KEY_PATH,
   mongoDbUrl: process.env.MONGO_DATABASE_URL,

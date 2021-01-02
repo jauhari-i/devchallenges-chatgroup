@@ -10,11 +10,11 @@ app.use(
     authorizer: (username, password) => {
       const userMatches = basicAuth.safeCompare(
         username,
-        basicAuthInstance[0].username
+        basicAuthInstance.username
       )
       const passwordMatches = basicAuth.safeCompare(
         password,
-        basicAuthInstance[0].password
+        basicAuthInstance.password
       )
       return userMatches & passwordMatches
     },
