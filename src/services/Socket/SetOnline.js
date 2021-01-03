@@ -1,10 +1,10 @@
 import User from '../../models/User'
 
-const SetOnline = async (id) => {
-  const online = await User.findOneAndUpdate({ userId: id}, {online: true})
-  if(online){
+const SetOnline = async id => {
+  const online = await User.findOneAndUpdate({ userId: id }, { online: true })
+  if (online) {
     return online
-  } else{
+  } else {
     return false
   }
 }

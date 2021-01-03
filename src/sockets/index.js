@@ -2,7 +2,7 @@ import SocketIo from 'socket.io'
 import { verifySocket } from '../auth/jwt_auth_instance'
 import services from '../services'
 
-const {SocketInstance} = services
+const { SocketInstance } = services
 
 export default function generateSocket(server) {
   const io = new SocketIo.Server(server)
@@ -27,16 +27,16 @@ export default function generateSocket(server) {
       const user = socket.user
 
       const online = SocketInstance.SetOnline(user.sub)
-      if(online){
+      if (online) {
         console.log('User connected')
         logedNameSpace.emit('connection', 'Hello')
-      }else{
+      } else {
         console.log('Failed to connect')
       }
 
       socket.on('disconnect', () => {
         const offline = SocketInstance.SetOffline(user.sub)
-        if(offline) {
+        if (offline) {
           console.log('user disconnect')
         }
       })

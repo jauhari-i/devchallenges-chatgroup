@@ -3,7 +3,7 @@ import SetOffline from './SetOffline'
 
 const SocketInstance = {
   SetOffline,
-  SetOnline
+  SetOnline,
 }
 
 export default SocketInstance
