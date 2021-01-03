@@ -9,5 +9,15 @@
 </head>
 <body>
     Welcome to node js
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script>
+        const token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMDliMWFiMS0xZGE2LTQ0MDktODEwYS1kZGQxOTgwNTM4ZWMiLCJlbWFpbCI6ImthbmdyeWtvbmcxMjNAZ21haWwuY29tIiwiaWF0IjoxNjA5NjUyNzgxLCJleHAiOjE2MDk3MzkxODF9.DuUB7y85EgV2KZ9GitIUwdwVlRXbAaJ1sHd773EsFv5ZfzBvyM0oaav7J44Bv8rP3ik3dGeHg4kTf8rgK1TltVOeHCXxZ1v7943sZHDo8J9TeLqCCMCcGuS4IX74xoMF4IpPREK9I9ufY_U2Obyw5x24PdAxOIWOBfVGOOdrQQYII76_wKZ94NFgH_UD2FzjXX0qUVcaWdd6nDcj7CiHFBPeN5DZNQOW7xtZtDmMwi9zWqWvCyxXCkkG_6in8QB1aCjS69KUS-C9GMMOdv6JeEpEgyfVDUPl2yrGF4yG3e1kwpcjropmhOjjcY7G5dbWK8hiKcLZ4_cm64way9c-1w'
+        const socket = io.connect('http://localhost:9000/chat', {
+          query: {token}
+        })
+        socket.on('connection', s => {
+          console.log('user connected')
+        })
+    </script>
 </body>
 </html>

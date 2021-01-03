@@ -38,18 +38,42 @@ export const verifyToken = async (req, res, next) => {
 
   const token = getToken(req.headers)
   if (!token) {
-    return handleError({ statusCode: 401, message: 'Token is not valid!' })
+    return handleError({ statusCode: 401, message: 'Token is not valid!' }, res)
   }
   let decodedToken
   try {
     decodedToken = await jwt.verify(token, publicKey, verifyOptions)
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-      return handleError({ statusCode: 401, message: 'Access token expired!' })
+      return handleError(
+        { statusCode: 401, message: 'Access token expired!' },
+        res
+      )
     }
-    return handleError({ statusCode: 401, message: 'Token is not valid!' })
+    return handleError({ statusCode: 401, message: 'Token is not valid!' }, res)
   }
   const userId = decodedToken.sub
   req.userId = userId
   next()
+}
+
+export const verifySocket = async token => {
+  const publicKey = fs.readFileSync(getConfig('/publicKey'), 'utf8')
+  const verifyOptions = {
+    algorithm: 'RS256',
+  }
+
+  if (!token) {
+    return false
+  }
+  let decodedToken
+  try {
+    decodedToken = await jwt.verify(token, publicKey, verifyOptions)
+  } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      return false
+    }
+    return false
+  }
+  return decodedToken
 }
