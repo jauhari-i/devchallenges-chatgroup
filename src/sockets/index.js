@@ -30,6 +30,7 @@ export default function generateSocket(server) {
       if (online) {
         console.log('User connected')
         logedNameSpace.emit('connection', 'Hello')
+
       } else {
         console.log('Failed to connect')
       }
